@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
+import seaborn as sns
 df = pd.read_csv("Student_Performance.csv")
 
 #load model
@@ -42,6 +43,7 @@ if st.sidebar.button("Predict"):
     prediction=model.predict(input_user)
     st.sidebar.write('Model prediction',prediction)
         
+
 
 
 
