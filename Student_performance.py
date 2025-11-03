@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
-df=pd.read_csv(r"C:\Users\GEEK\Downloads\archive (4)\Student_Performance.csv")
+df = pd.read_csv("Student_Performance.csv")
+
+#load model
+with open("lr_student.pkl", 'rb') as file:
+    model = pickle.load(file)
 
 st.title('Student Performance')
 st.write(df.head())
@@ -16,8 +20,7 @@ plt.title('Hours Studied vs Performance Index')
 st.pyplot(plt)
 
 #load model
-with open(r"C:\Users\GEEK\lr_student.pkl",'rb') as file:
-    model=pickle.load(file)
+
 st.sidebar.header('user input')
 def user_input():
     Hourse_studied=st.sidebar.slider('Hours Studied',1,9,5)
@@ -43,4 +46,5 @@ if st.sidebar.button("Predict"):
     prediction=model.predict(input_user)
     st.sidebar.write('Model prediction',prediction)
         
+
 
