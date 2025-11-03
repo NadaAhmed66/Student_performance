@@ -11,13 +11,9 @@ with open("lr_student.pkl", 'rb') as file:
 st.title('Student Performance')
 st.write(df.head())
 
-plt.figure(figsize=(6, 4))
-plt.scatter(df['Hours Studied'], df['Performance Index'], color='blue')
-plt.xlabel('Hours Studied')
-plt.ylabel('Performance Index')
-plt.title('Hours Studied vs Performance Index')
+fig = sns.pairplot(df)
+st.pyplot(fig.figure)
 
-st.pyplot(plt)
 
 #load model
 
@@ -46,5 +42,6 @@ if st.sidebar.button("Predict"):
     prediction=model.predict(input_user)
     st.sidebar.write('Model prediction',prediction)
         
+
 
 
